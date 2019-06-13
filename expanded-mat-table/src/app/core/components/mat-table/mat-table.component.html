@@ -1,0 +1,40 @@
+<div class="col-md-12">
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <!-- id column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element?.id}}
+      </mat-cell>
+    </ng-container>
+    <!-- first_name column -->
+    <ng-container matColumnDef="first_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element?.first_name}}
+      </mat-cell>
+    </ng-container>
+    <!-- last_name column -->
+    <ng-container matColumnDef="last_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element?.last_name}}
+      </mat-cell>
+    </ng-container>
+    <!-- Expanded Content Column - The detail row is made up of this one column -->
+    <ng-template #tpl let-element>
+      <div class="row" [@detailExpand]>
+        <div class="col-md-12 expanded-section">
+          <p>weight: {{element?.weight}}</p>
+          <p>age: {{element?.age}}</p>
+        </div>
+      </div>
+    </ng-template>
+    <!-- Headers -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [cdkDetailRow]="row"
+      [cdkDetailRowTpl]="tpl">
+    </mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[10, 5, 3]"></mat-paginator>
+</div>

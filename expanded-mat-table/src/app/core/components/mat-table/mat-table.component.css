@@ -1,0 +1,32 @@
+.expanded-section {
+  height: 325px;
+  overflow: auto;
+  margin-top: 25px;
+  overflow-x: hidden;
+}
+
+mat-table {
+  overflow: auto;
+  height: 580px;
+  margin-top:20px;
+}
+
+mat-row:nth-child(2n+2) {
+  background-color: rgba(119, 136, 153, 0.2);
+}
+
+.element-row {
+  position: relative;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+  opacity: 0.4;
+}
+
+.element-row.expanded {
+  border-bottom-color: transparent;
+}
