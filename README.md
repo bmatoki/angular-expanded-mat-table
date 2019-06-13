@@ -3,6 +3,10 @@
 there isn't expanded mat table in angular material. i built one with custom directive - very helpful tool.
 please note that mat-sort,mat-select-mat paginator works with that solution.
 
+examples under:
+*src/app/core/components
+*src/app/shared/directives
+
 
 ## Getting Started
 
