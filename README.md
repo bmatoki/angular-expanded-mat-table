@@ -1,7 +1,8 @@
 # angular-expanded-mat-table
 
 there isn't expanded mat table in angular material. i built one with custom directive - very helpful tool.
-please note that mat-sort,mat-select-mat paginator works with that solution.
+please note that mat-sort,mat-select mat paginator,filter value works with that solution.
+you can also search in expanded zone.
 
 examples under:
 *src/app/core/components
