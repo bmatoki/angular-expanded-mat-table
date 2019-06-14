@@ -6,6 +6,7 @@ you can also search in expanded zone.
 
 examples under:
 *src/app/core/components
+
 *src/app/shared/directives
 
 
