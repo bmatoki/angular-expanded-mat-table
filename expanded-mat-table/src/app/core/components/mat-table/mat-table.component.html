@@ -1,5 +1,23 @@
 <div class="col-md-12">
+  <div class="search-section">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search value">
+    </mat-form-field>
+  </div>
   <mat-table #table [dataSource]="dataSource" matSort>
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null"
+          [checked]="selection.isSelected(element)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
     <!-- id column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
@@ -36,5 +54,6 @@
       [cdkDetailRowTpl]="tpl">
     </mat-row>
   </mat-table>
+  <p>Total selected: {{getTotalSelected() }}</p>
   <mat-paginator [pageSizeOptions]="[10, 5, 3]"></mat-paginator>
 </div>

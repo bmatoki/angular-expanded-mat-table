@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewEncapsulation,ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SelectionModel } from '@angular/cdk/collections';
 import { PersonElement } from '@app/shared';
 
 const ELEMENT_DATA: PersonElement[] = [
@@ -37,11 +38,12 @@ const ELEMENT_DATA: PersonElement[] = [
   encapsulation: ViewEncapsulation.None,
 })
 export class MatTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'first_name', 'last_name'];
-  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['select','id', 'first_name', 'last_name'];
+  dataSource: MatTableDataSource<PersonElement>;
   isExpansionDetailRow = (i: number, row: Object) => {
     return row.hasOwnProperty('detailRow');
   }
+  selection = new SelectionModel<PersonElement>(true, []);
   @ViewChild(MatSort,{static: true}) sort: MatSort;
   @ViewChild(MatPaginator,{static: true}) paginator: MatPaginator;
   
@@ -53,4 +55,35 @@ export class MatTableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+    // search filter inside the mat table
+    applyFilter(filterValue: string) {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
+    }
+  
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  // get total selected logs length
+  getTotalSelected() {
+    const total = this.selection.selected;
+    return total.length;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
+      this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+    }
+  }
 }

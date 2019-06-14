@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MatPaginatorModule, MatSortModule,MatTableModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule,MatTableModule,
+  MatSelectModule,MatCheckboxModule, MatInputModule } from '@angular/material';
 import { CdkDetailRowDirective } from '@app/shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +22,9 @@ import { MainComponent,MatTableComponent } from '@app/core';
     MatTableModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-
+    MatSelectModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

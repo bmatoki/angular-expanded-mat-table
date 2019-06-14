@@ -30,3 +30,7 @@ mat-row:nth-child(2n+2) {
 .element-row.expanded {
   border-bottom-color: transparent;
 }
+
+.search-section {
+  margin-top:5px;
+}
